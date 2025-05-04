@@ -35,10 +35,19 @@ st.subheader("テキスト入力")
 name = st.text_input("あなたの名前", "ゲスト")
 st.write(f"こんにちは、{name}さん！")
 
-# ボタン
-# st.subheader("ボタン")
-# if st.button("クリックしてください"):
-#     st.success("ボタンがクリックされました！")
+# ボタンにカウント機能を付けた
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("➕ 増やす"):
+        st.session_state.click_count += 1
+
+with col2:
+    if st.button("➖ 減らす"):
+        if st.session_state.click_count > 0:
+            st.session_state.click_count -= 1
+
+st.info(f"現在のクリック回数: {st.session_state.click_count}")
 
 # チェックボックス
 # st.subheader("チェックボックス")
